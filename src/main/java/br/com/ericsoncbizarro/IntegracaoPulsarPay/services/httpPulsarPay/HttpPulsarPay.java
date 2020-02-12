@@ -1,4 +1,4 @@
-package br.com.ericsoncbizarro.IntegracaoPulsarPay.httpPulsarPay;
+package br.com.ericsoncbizarro.IntegracaoPulsarPay.services.httpPulsarPay;
 
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.exception.BadRequestHttpPulsarPayException;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay.Cliente;
