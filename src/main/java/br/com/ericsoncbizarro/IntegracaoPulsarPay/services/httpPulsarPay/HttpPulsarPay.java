@@ -35,7 +35,7 @@ public class HttpPulsarPay {
             OkHttpClient client = new OkHttpClient().newBuilder().build();
 
             MultipartBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                    .addFormDataPart("email", user.getEmail())
+                    .addFormDataPart("pp_token", user.getPp_token())
                     .addFormDataPart("password", user.getPassword())
                     .build();
 
