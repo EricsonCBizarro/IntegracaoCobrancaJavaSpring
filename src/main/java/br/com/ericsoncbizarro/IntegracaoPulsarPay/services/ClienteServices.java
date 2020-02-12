@@ -20,17 +20,17 @@ public class ClienteServices {
         return httpPulsarPay.getClientes();
     }
 
-    public Cliente create() throws Exception {
-        Cliente cliente = mockCliente();
-        return httpPulsarPay.postCliente(cliente);
+    public List<Cliente> create(Cliente clienteRequestBody) throws Exception { // criar um dto para cliente
+        Cliente clienteMock = mockCliente(clienteRequestBody);
+        return httpPulsarPay.postCliente(clienteMock);
     }
 
-    private Cliente mockCliente(){
-        Cliente cliente = new Cliente();
-        cliente.setControle_externo(counter.incrementAndGet());
-        cliente.setNome("Ericson C Bizarro");
-        cliente.setDocumento("03253300005");
-        cliente.setData_nascimento("1994-06-02");
-        return cliente;
+    private Cliente mockCliente(Cliente clienteRequestBody){
+        Cliente clienteHttp = new Cliente();
+        clienteHttp.setControle_externo(counter.incrementAndGet());
+        clienteHttp.setNome(clienteRequestBody.getNome());
+        clienteHttp.setDocumento(clienteRequestBody.getDocumento());
+        clienteHttp.setData_nascimento(clienteRequestBody.getData_nascimento());
+        return clienteHttp;
     }
 }

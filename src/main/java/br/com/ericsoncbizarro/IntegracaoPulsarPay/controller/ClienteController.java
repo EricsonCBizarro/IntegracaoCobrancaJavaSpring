@@ -4,6 +4,7 @@ import br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay.Cliente;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.services.ClienteServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,8 +33,8 @@ public class ClienteController {
                     produces = MediaType.APPLICATION_JSON_VALUE,
                     consumes = MediaType.APPLICATION_JSON_VALUE
             )
-    public Cliente create() throws Exception {
-        return services.create();
+    public List<Cliente> create(@RequestBody Cliente cliente) throws Exception {
+        return services.create(cliente);
     }
 
 }

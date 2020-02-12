@@ -112,16 +112,21 @@ public class HttpPulsarPay {
         }
     }
 
-    public Cliente postCliente(Cliente cliente) throws Exception {
+    public List<Cliente> postCliente(Cliente clienteBody) throws Exception {
 
         getToken();
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         MultipartBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("nome", cliente.getNome())
-                .addFormDataPart("documento", cliente.getDocumento())
-                .addFormDataPart("data_nascimento", cliente.getDocumento())
+                .addFormDataPart("cliente[nome]", clienteBody.getNome())
+                .addFormDataPart("cliente[documento]", clienteBody.getDocumento())
+                .addFormDataPart("cliente[data_nascimento]", clienteBody.getData_nascimento())
+                .addFormDataPart("endereco[cep]", "99074020")
+                .addFormDataPart("endereco[bairro]", "Don Rodolfo")
+                .addFormDataPart("endereco[endereco]", "Rua General Daltro Filho")
+                .addFormDataPart("endereco[nro]", "1834")
+                .addFormDataPart("ibge_code", "4314100")
                 .build();
 
         Request request = new Request.Builder()
@@ -135,12 +140,34 @@ public class HttpPulsarPay {
 
         Response response = client.newCall(request).execute();
 
-        if (response.code() == 200) {
+        if (response.code() == 201) {
+            String jsonResponse = response.body().string();
+            JSONObject objectJsonResponse = new JSONObject(jsonResponse);
+            JSONArray arrObjectJsonResponse = objectJsonResponse.getJSONArray("data");
 
-            return null;
+            List<Cliente> clientes = new ArrayList<Cliente>();
+
+            for (int i = 0; i < arrObjectJsonResponse.length(); i++) {
+                JSONObject objJSON = (JSONObject) arrObjectJsonResponse.get(i);
+                Cliente cliente = deserializePostCliente(objJSON);
+                clientes.add(cliente);
+            }
+            return clientes;
         } else {
             String jsonResponse = response.body().string();
             throw new BadRequestHttpPulsarPayException("Erro Cliente. Code: " + response.code() + " Mensagem: " + jsonResponse);
         }
+    }
+
+    private Cliente deserializePostCliente(JSONObject objJSON) throws Exception {
+        Cliente cliente = new Cliente();
+        cliente.setUpdated_at(objJSON.getString("updated_at"));
+        cliente.setData_nascimento(objJSON.getString("data_nascimento"));
+        cliente.setConta_id(objJSON.getString("conta_id"));
+        cliente.setDocumento(objJSON.getString("documento"));
+        cliente.setValidado(objJSON.getString("validado"));
+        cliente.setCreated_at(objJSON.getString("created_at"));
+        cliente.setNome(objJSON.getString("nome"));
+        return cliente;
     }
 }
