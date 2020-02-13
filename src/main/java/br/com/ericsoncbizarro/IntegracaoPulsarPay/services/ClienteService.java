@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
-public class ClienteServices {
+public class ClienteService {
 
     @Autowired
     private HttpPulsarPay httpPulsarPay;
