@@ -15,7 +15,19 @@ public class ProdutoService {
     private HttpPulsarPay httpPulsarPay;
 
     public List<Produto> findAll() throws Exception {
-        return httpPulsarPay.getProdutos();
+        return httpPulsarPay.getProduto();
+    }
+
+    public List<Produto> create(Produto produtoRequestBody) throws Exception { // criar um dto para cliente
+        Produto produtoMock = mockProduto(produtoRequestBody);
+        return httpPulsarPay.postProduto(produtoMock);
+    }
+
+    private Produto mockProduto(Produto produtoRequestBody){
+        Produto produtoHttp = new Produto();
+        produtoHttp.setDescricao(produtoRequestBody.getDescricao());
+        produtoHttp.setValor(produtoRequestBody.getValor());
+        return produtoHttp;
     }
 
 

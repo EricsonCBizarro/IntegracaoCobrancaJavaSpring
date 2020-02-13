@@ -160,7 +160,7 @@ public class HttpPulsarPay {
         }
     }
 
-    public List<Produto> getProdutos() throws Exception {
+    public List<Produto> getProduto() throws Exception {
 
         getToken();
 
@@ -186,6 +186,7 @@ public class HttpPulsarPay {
                 Gson gson = new Gson();
                 List<Produto> produtos = new ArrayList<Produto>();
 
+
                 for (int i = 0; i < arrObjectJsonResponse.length(); i++) {
                     Object arrJSON = arrObjectJsonResponse.get(i);
                     Produto produto;
@@ -200,6 +201,55 @@ public class HttpPulsarPay {
             }
         } else {
             throw new BadRequestHttpPulsarPayException("Não foi possivel buscar todos os clientes cadastrados na api.");
+        }
+    }
+
+    public List<Produto> postProduto(Produto produtoBody) throws Exception {
+
+        getToken();
+
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        MultipartBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                .addFormDataPart("valor", produtoBody.getValor())
+                .addFormDataPart("descricao", produtoBody.getDescricao())
+//                .addFormDataPart("ibge_code", "4314100")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(BASE_URL + "/produto")
+                .method("POST", body)
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
+                .addHeader("Cache-Control", "no-cache")
+                .addHeader("Authorization", "Bearer " + user.getToken())
+                .build();
+
+        Response response = client.newCall(request).execute();
+
+        if (response.code() == 201) {
+            // RETORNO DA API FORA DO PADRAO DE JSON - TEMPORARIAMENTE -> EQUIPE PULSARPAY
+            // EX: {"codigo":186993}
+
+//            String jsonResponse = response.body().string();
+//            JSONObject objectJsonResponse = new JSONObject(jsonResponse);
+//            JSONArray arrObjectJsonResponse = objectJsonResponse.getJSONArray("data");
+//
+//            Gson gson = new Gson();
+//            List<Produto> produtos = new ArrayList<Produto>();
+//
+//
+//            for (int i = 0; i < arrObjectJsonResponse.length(); i++) {
+//                Object arrJSON = arrObjectJsonResponse.get(i);
+//                Produto produto;
+//                produto = gson.fromJson(arrJSON.toString(), Produto.class);
+//                produtos.add(produto);
+//            }
+            return null;
+
+        } else {
+            String jsonResponse = response.body().string();
+            throw new BadRequestHttpPulsarPayException("Erro Cliente. Code: " + response.code() + " Mensagem: " + jsonResponse);
         }
     }
 

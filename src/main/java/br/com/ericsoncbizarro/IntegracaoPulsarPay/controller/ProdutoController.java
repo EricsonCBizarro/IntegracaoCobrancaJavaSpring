@@ -1,9 +1,11 @@
 package br.com.ericsoncbizarro.IntegracaoPulsarPay.controller;
 
+import br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay.Cliente;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay.Produto;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,4 +28,13 @@ public class ProdutoController {
         return services.findAll();
     }
 
+    @RequestMapping
+            (
+                    method = RequestMethod.POST,
+                    produces = MediaType.APPLICATION_JSON_VALUE,
+                    consumes = MediaType.APPLICATION_JSON_VALUE
+            )
+    public List<Produto> create(@RequestBody Produto produto) throws Exception {
+        return services.create(produto);
+    }
 }
