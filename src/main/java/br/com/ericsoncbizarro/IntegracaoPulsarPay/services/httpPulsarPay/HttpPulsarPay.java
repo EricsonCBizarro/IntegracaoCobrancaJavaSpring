@@ -2,6 +2,7 @@ package br.com.ericsoncbizarro.IntegracaoPulsarPay.services.httpPulsarPay;
 
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.exception.BadRequestHttpPulsarPayException;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay.Cliente;
+import br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay.Produto;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay.User;
 import com.google.gson.Gson;
 import okhttp3.MultipartBody;
@@ -158,6 +159,50 @@ public class HttpPulsarPay {
             throw new BadRequestHttpPulsarPayException("Erro Cliente. Code: " + response.code() + " Mensagem: " + jsonResponse);
         }
     }
+
+    public List<Produto> getProdutos() throws Exception {
+
+        getToken();
+
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        Request request = new Request.Builder()
+                .url(BASE_URL + "/produto")
+                .method("GET", null)
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
+                .addHeader("Cache-Control", "no-cache")
+                .addHeader("Authorization", "Bearer " + user.getToken())
+                .build();
+
+        Response response = client.newCall(request).execute();
+
+        if (response.code() == 200) {
+            try {
+                String jsonResponse = response.body().string();
+                JSONObject objectJsonResponse = new JSONObject(jsonResponse);
+                JSONArray arrObjectJsonResponse = objectJsonResponse.getJSONArray("data");
+
+                Gson gson = new Gson();
+                List<Produto> produtos = new ArrayList<Produto>();
+
+                for (int i = 0; i < arrObjectJsonResponse.length(); i++) {
+                    Object arrJSON = arrObjectJsonResponse.get(i);
+                    Produto produto;
+                    produto = gson.fromJson(arrJSON.toString(), Produto.class);
+                    produtos.add(produto);
+                }
+
+                return produtos;
+
+            } catch (Exception e) {
+                throw new BadRequestHttpPulsarPayException("Critical Error.");
+            }
+        } else {
+            throw new BadRequestHttpPulsarPayException("Não foi possivel buscar todos os clientes cadastrados na api.");
+        }
+    }
+
 
     private Cliente deserializePostCliente(JSONObject objJSON) throws Exception {
         Cliente cliente = new Cliente();
