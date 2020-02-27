@@ -2,3 +2,4 @@
 /target/classes/
 /IntegracaoPulsarPayJava.iml
 /target/
+*.iml
