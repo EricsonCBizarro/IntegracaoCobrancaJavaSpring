@@ -1,6 +1,6 @@
 # Integracao a um sistema de cobrança API REST com Java Spring
 
-Este codigo foi desenvolvido para fins de estudo e não deve ser utilizado sem review.
+**_Este codigo foi desenvolvido para fins de estudo e não deve ser utilizado sem review._**
 
 **Proposta:** Realizar uma integração com um sistema de cobrança.
 
