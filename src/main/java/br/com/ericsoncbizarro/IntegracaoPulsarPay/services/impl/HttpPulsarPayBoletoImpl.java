@@ -2,7 +2,7 @@ package br.com.ericsoncbizarro.IntegracaoPulsarPay.services.impl;
 
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.exception.BadRequestHttpPulsarPayException;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay.Boleto;
-import br.com.ericsoncbizarro.IntegracaoPulsarPay.services.HttpPulsarPay;
+import br.com.ericsoncbizarro.IntegracaoPulsarPay.services.HttpPulsarPayService;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.services.HttpPulsarPayBoleto;
 import com.google.gson.Gson;
 import okhttp3.MultipartBody;
@@ -20,7 +20,7 @@ import java.util.List;
 public class HttpPulsarPayBoletoImpl implements HttpPulsarPayBoleto {
 
     @Autowired
-    HttpPulsarPay httpPulsarPayService;
+    HttpPulsarPayService httpPulsarPayService;
 
     public List<Boleto> getBoletos() throws Exception {
 
@@ -29,7 +29,7 @@ public class HttpPulsarPayBoletoImpl implements HttpPulsarPayBoleto {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         Request request = new Request.Builder()
-                .url(HttpPulsarPay.BASE_URL + "/boleto/listar")
+                .url(HttpPulsarPayService.BASE_URL + "/boleto/listar")
                 .method("GET", null)
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
@@ -79,7 +79,7 @@ public class HttpPulsarPayBoletoImpl implements HttpPulsarPayBoleto {
                 .build();
 
         Request request = new Request.Builder()
-                .url(HttpPulsarPay.BASE_URL + "/boleto/gerar")
+                .url(HttpPulsarPayService.BASE_URL + "/boleto/gerar")
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")

@@ -2,7 +2,7 @@ package br.com.ericsoncbizarro.IntegracaoPulsarPay.services.impl;
 
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.exception.BadRequestHttpPulsarPayException;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay.Cliente;
-import br.com.ericsoncbizarro.IntegracaoPulsarPay.services.HttpPulsarPay;
+import br.com.ericsoncbizarro.IntegracaoPulsarPay.services.HttpPulsarPayService;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.services.HttpPulsarPayCliente;
 import com.google.gson.Gson;
 import okhttp3.MultipartBody;
@@ -21,7 +21,7 @@ import java.util.List;
 public class HttpPulsarPayClienteImpl implements HttpPulsarPayCliente {
 
     @Autowired
-    HttpPulsarPay httpPulsarPayService;
+    HttpPulsarPayService httpPulsarPayService;
 
     public List<Cliente> getClientes() throws Exception {
 
@@ -30,7 +30,7 @@ public class HttpPulsarPayClienteImpl implements HttpPulsarPayCliente {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         Request request = new Request.Builder()
-                .url(HttpPulsarPay.BASE_URL + "/cliente")
+                .url(HttpPulsarPayService.BASE_URL + "/cliente")
                 .method("GET", null)
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
@@ -84,7 +84,7 @@ public class HttpPulsarPayClienteImpl implements HttpPulsarPayCliente {
                 .build();
 
         Request request = new Request.Builder()
-                .url(HttpPulsarPay.BASE_URL + "/cliente")
+                .url(HttpPulsarPayService.BASE_URL + "/cliente")
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
