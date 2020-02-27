@@ -1,8 +1,16 @@
 package br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Getter
+@Setter
+@Accessors(chain=true)
+@NoArgsConstructor
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,146 +32,6 @@ public class Cliente implements Serializable {
     private String conta_id;
     private String endereco_id;
     private String validado;
-
-    public Cliente() {
-
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNome_fantasia() {
-        return nome_fantasia;
-    }
-
-    public void setNome_fantasia(String nome_fantasia) {
-        this.nome_fantasia = nome_fantasia;
-    }
-
-    public String getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
-
-    public String getData_nascimento() {
-        return data_nascimento;
-    }
-
-    public void setData_nascimento(String data_nascimento) {
-        this.data_nascimento = data_nascimento;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
-    public String getSkype() {
-        return skype;
-    }
-
-    public void setSkype(String skype) {
-        this.skype = skype;
-    }
-
-    public long getControle_externo() {
-        return controle_externo;
-    }
-
-    public void setControle_externo(long controle_externo) {
-        this.controle_externo = controle_externo;
-    }
-
-    public String getObservacoes() {
-        return observacoes;
-    }
-
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
-    }
-
-    public String getAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(String ativo) {
-        this.ativo = ativo;
-    }
-
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
-    }
-
-    public String getUpdated_at() {
-        return updated_at;
-    }
-
-    public void setUpdated_at(String updated_at) {
-        this.updated_at = updated_at;
-    }
-
-    public String getConta_id() {
-        return conta_id;
-    }
-
-    public void setConta_id(String conta_id) {
-        this.conta_id = conta_id;
-    }
-
-    public String getEndereco_id() {
-        return endereco_id;
-    }
-
-    public void setEndereco_id(String endereco_id) {
-        this.endereco_id = endereco_id;
-    }
-
-    public String getValidado() {
-        return validado;
-    }
-
-    public void setValidado(String validado) {
-        this.validado = validado;
-    }
 
     @Override
     public boolean equals(Object o) {
