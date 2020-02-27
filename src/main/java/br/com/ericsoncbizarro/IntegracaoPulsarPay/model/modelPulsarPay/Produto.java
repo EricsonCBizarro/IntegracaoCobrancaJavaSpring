@@ -13,6 +13,7 @@ import java.util.Objects;
 @NoArgsConstructor
 public class Produto  implements Serializable {
 
+    // @TODO rever tipos de dados.... created_at etc... String ?
     private static final long serialVersionUID = 1L;
     private long id;
     private String descricao;
@@ -20,6 +21,7 @@ public class Produto  implements Serializable {
     private String created_at;
     private String updated_at;
 
+    // @TODO porque precisou reimplementar equals e hashCode em Produto mas nao em Boleto?
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

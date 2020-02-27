@@ -11,6 +11,8 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 public class Boleto {
 
+    // @TODO rever tipos de dados.... data de nascimento, valor_total etc... String ?
+    // @TODO usar notação camelCase... trocar valor_total por valorTotal etc...
     private String boleto_id;
     private String nosso_numero;
     private String credito_id;
@@ -22,6 +24,7 @@ public class Boleto {
     private String linha_digitavel;
     private String valor_total;
 
+    // @TODO precisa ter todos esses construtores?
     public Boleto(String vencimento, String documento, String data_nascimento, String valor_total) {
         this.vencimento = vencimento;
         this.documento = documento;

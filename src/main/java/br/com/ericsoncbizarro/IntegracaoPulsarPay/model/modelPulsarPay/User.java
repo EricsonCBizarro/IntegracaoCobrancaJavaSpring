@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
 import java.util.Objects;
 
 @Getter
@@ -13,8 +12,9 @@ import java.util.Objects;
 @NoArgsConstructor
 public class User {
 
+    // @TODO usar notação camelCase... trocar pp_token por ppToken etc...
     private String pp_token;
-    private String password;
+    private String password; // @TODO padronizar... em PT-BR ou em ingles?
     private String email;
     private String token;
 
@@ -23,6 +23,7 @@ public class User {
         this.password = password;
     }
 
+    // @TODO porque reimplementou equals e hash code aqui mas nao em Boleto? necessário?
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

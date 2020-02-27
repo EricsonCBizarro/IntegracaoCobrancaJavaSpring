@@ -15,6 +15,8 @@ public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    // @TODO rever tipos de dados.... data de nascimento etc... String ?
+    // @TODO usar notação camelCase... trocar conta_id por contaId etc...
     private long id;
     private String nome;
     private String nome_fantasia;
@@ -33,6 +35,7 @@ public class Cliente implements Serializable {
     private String endereco_id;
     private String validado;
 
+    // @TODO porque precisou reimplementar equals e hashCode em Cliente mas nao em Boleto?
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
