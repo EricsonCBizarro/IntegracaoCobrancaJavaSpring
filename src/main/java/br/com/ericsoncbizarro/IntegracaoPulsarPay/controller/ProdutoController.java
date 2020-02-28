@@ -1,15 +1,14 @@
 package br.com.ericsoncbizarro.IntegracaoPulsarPay.controller;
 
-import br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay.Cliente;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay.Produto;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @RestController
@@ -17,24 +16,18 @@ import java.util.List;
 public class ProdutoController {
 
     @Autowired
-    private ProdutoService services;
+    private ProdutoService produtoService;
 
-    @RequestMapping
-            (
-                    method = RequestMethod.GET,
-                    produces = MediaType.APPLICATION_JSON_VALUE
-            )
+    @GetMapping ( produces = MediaType.APPLICATION_JSON_VALUE )
     public List<Produto> findAll() throws Exception {
-        return services.findAll();
+        // @TODO nome da classe em PT-BR, nome dos métodos em inglês. sugiro padronizar
+        return produtoService.findAll();
     }
 
-    @RequestMapping
-            (
-                    method = RequestMethod.POST,
-                    produces = MediaType.APPLICATION_JSON_VALUE,
-                    consumes = MediaType.APPLICATION_JSON_VALUE
-            )
+    @PostMapping ( produces = MediaType.APPLICATION_JSON_VALUE,
+                    consumes = MediaType.APPLICATION_JSON_VALUE )
     public List<Produto> create(@RequestBody Produto produto) throws Exception {
-        return services.create(produto);
+        // @TODO nome da classe em PT-BR, nome dos métodos em inglês. sugiro padronizar
+        return produtoService.create(produto);
     }
 }
