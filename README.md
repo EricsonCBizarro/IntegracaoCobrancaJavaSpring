@@ -4,7 +4,7 @@
 
 **Proposta:** Realizar uma integração com um sistema de cobrança.
 
-**Extra:** Treino do uso do de plataformas como GitHub - Utilizando Review Code - Trabalho com branches - Pull Request - Correção de Codigo.
+**Extra:** Treino do uso de plataformas como GitHub - Utilizando Review Code - Trabalho com branches - Pull Request - Correção de Codigo.
 
 **Extra:** Desenvolvimento de testes automatizado para validar as saidas da API Java Spring
 
@@ -17,7 +17,7 @@ https://www.pulsarpay.com/
 
 https://docs.pulsarpay.com/?version=latest
 
-### Dia 13 - 14 Fev
+## Dia 13 - 14 Fev
 
 `Estudo em JAVA desenvolvido por Ericson Bizarro - CWI - SQUAD SME - Banco BV (Banco Votorantim).`
 
