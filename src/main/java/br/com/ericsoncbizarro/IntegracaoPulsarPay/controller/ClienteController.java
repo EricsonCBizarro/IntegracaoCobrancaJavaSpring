@@ -4,11 +4,11 @@ import br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay.Cliente;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @RestController
@@ -16,25 +16,19 @@ import java.util.List;
 public class ClienteController {
 
     @Autowired
-    private ClienteService services;
+    private ClienteService clienteService;
 
-    @RequestMapping
-            (
-                    method = RequestMethod.GET,
-                    produces = MediaType.APPLICATION_JSON_VALUE
-            )
+    @GetMapping( produces = MediaType.APPLICATION_JSON_VALUE )
     public List<Cliente> findAll() throws Exception {
-        return services.findAll();
+        // @TODO nome da classe em PT-BR, nome dos métodos em inglês. sugiro padronizar
+        return clienteService.findAll();
     }
 
-    @RequestMapping
-            (
-                    method = RequestMethod.POST,
-                    produces = MediaType.APPLICATION_JSON_VALUE,
-                    consumes = MediaType.APPLICATION_JSON_VALUE
-            )
+    @PostMapping ( produces = MediaType.APPLICATION_JSON_VALUE,
+                   consumes = MediaType.APPLICATION_JSON_VALUE )
     public List<Cliente> create(@RequestBody Cliente cliente) throws Exception {
-        return services.create(cliente);
+        // @TODO nome da classe em PT-BR, nome dos métodos em inglês. sugiro padronizar
+        return clienteService.create(cliente);
     }
 
 }

@@ -1,62 +1,27 @@
 package br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Getter
+@Setter
+@Accessors(chain=true)
+@NoArgsConstructor
 public class Produto  implements Serializable {
 
+    // @TODO rever tipos de dados.... created_at etc... String ?
     private static final long serialVersionUID = 1L;
-
     private long id;
     private String descricao;
     private String valor;
     private String created_at;
     private String updated_at;
 
-    public Produto(){
-
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getValor() {
-        return valor;
-    }
-
-    public void setValor(String valor) {
-        this.valor = valor;
-    }
-
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
-    }
-
-    public String getUpdated_at() {
-        return updated_at;
-    }
-
-    public void setUpdated_at(String updated_at) {
-        this.updated_at = updated_at;
-    }
-
+    // @TODO porque precisou reimplementar equals e hashCode em Produto mas nao em Boleto?
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
