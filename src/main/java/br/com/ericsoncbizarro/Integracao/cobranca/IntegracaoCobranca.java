@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class IntegracaoPulsarPay {
+public class IntegracaoCobranca {
 
     public static void main(String[] args) {
-        SpringApplication.run(IntegracaoPulsarPay.class, args);
+        SpringApplication.run(IntegracaoCobranca.class, args);
     }
 }
