@@ -1,5 +1,6 @@
 package br.com.ericsoncbizarro.IntegracaoPulsarPay.controller;
 
+import br.com.ericsoncbizarro.IntegracaoPulsarPay.feign.BoletoOutputDTO;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay.Boleto;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.services.BoletoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class BoletoController {
 
     @PostMapping( produces = MediaType.APPLICATION_JSON_VALUE,
                   consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Boleto> create(@RequestBody Boleto boleto) throws Exception {
+    public BoletoOutputDTO create(@RequestBody Boleto boleto) throws Exception {
         // @TODO nome da classe em PT-BR, nome dos métodos em inglês. sugiro padronizar
         return boletoService.create(boleto);
     }
