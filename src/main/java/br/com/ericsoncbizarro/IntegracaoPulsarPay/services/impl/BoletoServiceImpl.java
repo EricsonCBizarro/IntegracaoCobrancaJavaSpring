@@ -1,5 +1,6 @@
 package br.com.ericsoncbizarro.IntegracaoPulsarPay.services.impl;
 
+import br.com.ericsoncbizarro.IntegracaoPulsarPay.feign.BoletoOutputDTO;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.model.modelPulsarPay.Boleto;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.services.BoletoService;
 import br.com.ericsoncbizarro.IntegracaoPulsarPay.services.HttpPulsarPayBoleto;
@@ -17,7 +18,7 @@ public class BoletoServiceImpl implements BoletoService {
         return httpPulsarPay.getBoletos();
     }
 
-    public List<Boleto> create(Boleto boletoRequestBody) throws Exception { // criar um dto para cliente
+    public BoletoOutputDTO create(Boleto boletoRequestBody) throws Exception { // criar um dto para cliente
         Boleto boletoMock = mockBoleto(boletoRequestBody);
         return httpPulsarPay.postBoleto(boletoMock);
     }
